@@ -59,12 +59,12 @@ elm_main(int argc __UNUSED__,
 
   edje_object_signal_callback_add(elm_layout_edje_get(lay),
 				  "signal_test_print",
-				  "elm.swallow.view",
+				  "view.bg",
 				  _test_print,
 				  NULL);
   edje_object_signal_callback_add(elm_layout_edje_get(lay),
 				  "signal_test_print",
-				  "elm.swallow.panel",
+				  "panel.bg",
 				  _test_print,
 				  NULL);
 

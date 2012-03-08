@@ -17,8 +17,9 @@ collections {
             }
          }
          part { name: "elm.swallow.view"; type: SWALLOW;
-            pointer_mode: NOGRAB;
             description { state: "default" 0.0;
+               color: 255 255 255 0;
+               visible: 1;
                rel1 {
                   relative: 0.0 0.0;
                }
@@ -27,9 +28,23 @@ collections {
                }
             }
          }
-         part { name: "elm.swallow.panel"; type: SWALLOW;
+         part { name: "view.bg"; type: RECT;
+            repeat_events: 1;
             pointer_mode: NOGRAB;
             description { state: "default" 0.0;
+               color: 0 255 0 100;
+               rel1 {
+                  to: "elm.swallow.view";
+               }
+               rel2 {
+                  to: "elm.swallow.view";
+               }
+            }
+         }
+         part { name: "elm.swallow.panel"; type: SWALLOW;
+            description { state: "default" 0.0;
+               color: 255 255 255 0;
+               visible: 1;
                rel1 {
                   relative: 0.5 0.0;
                }
@@ -38,21 +53,34 @@ collections {
                }
             }
          }
+         part { name: "panel.bg"; type: RECT;
+            pointer_mode: NOGRAB;
+            repeat_events: 1;
+            description { state: "default" 0.0;
+               color: 0 0 255 100;
+               rel1 {
+                  to: "elm.swallow.panel";
+               }
+               rel2 {
+                  to: "elm.swallow.panel";
+               }
+            }
+         }
       }
       programs {
          program {
             signal: "mouse,in";
-            source: "elm.swallow.panel";
+            source: "view.bg";
 
             action: SIGNAL_EMIT "signal_test_print"
-               "elm.swallow.panel";
+               "view.bg";
          }
          program {
             signal: "mouse,in";
-            source: "elm.swallow.view";
+            source: "panel.bg";
 
             action: SIGNAL_EMIT "signal_test_print"
-               "elm.swallow.view";
+               "panel.bg";
          }
       }
    }
