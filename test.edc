@@ -1,0 +1,59 @@
+externals {
+   external: "elm";
+}
+
+collections {
+   group { name: "elm/layout/application/test";
+      parts {
+         part { name: "bg"; type: RECT;
+            description { state: "default" 0.0;
+               color: 255 0 0 255;
+               rel1 {
+                  relative: 0.0 0.0;
+               }
+               rel2 {
+                  relative: 1.0 1.0;
+               }
+            }
+         }
+         part { name: "elm.swallow.view"; type: SWALLOW;
+            pointer_mode: NOGRAB;
+            description { state: "default" 0.0;
+               rel1 {
+                  relative: 0.0 0.0;
+               }
+               rel2 {
+                  relative: 0.5 1.0;
+               }
+            }
+         }
+         part { name: "elm.swallow.panel"; type: SWALLOW;
+            pointer_mode: NOGRAB;
+            description { state: "default" 0.0;
+               rel1 {
+                  relative: 0.5 0.0;
+               }
+               rel2 {
+                  relative: 1.0 1.0;
+               }
+            }
+         }
+      }
+      programs {
+         program {
+            signal: "mouse,in";
+            source: "elm.swallow.panel";
+
+            action: SIGNAL_EMIT "signal_test_print"
+               "elm.swallow.panel";
+         }
+         program {
+            signal: "mouse,in";
+            source: "elm.swallow.view";
+
+            action: SIGNAL_EMIT "signal_test_print"
+               "elm.swallow.view";
+         }
+      }
+   }
+}
